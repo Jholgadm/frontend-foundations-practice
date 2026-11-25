@@ -1,11 +1,142 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TODO: artículo</title>
-  </head>
-  <body>
-    <!-- Crea aquí un artículo completo. -->
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jetpack Compose en producción: lo que aprendimos al migrar una app real</title>
+</head>
+
+<body>
+  <header>
+    <nav aria-label="Ruta de navegación">
+      <ol>
+        <li><a href="#titular">Titular</a></li>
+        <li><a href="#punto-partida">Un punto de partida incómodo</a></li>
+        <li><a href="#migrar" aria-current="page">Migrar sin romper nada</a></li>
+        <li><a href="#que-cambiarian" aria-current="page">Qué cambiarían y qué esperar ahora</a></li>
+        <li><a href="#autora" aria-current="page">Sobre la autora</a></li>
+        <li><a href="#articulos-relacionados" aria-current="page">Artículos relacionados</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article aria-labelledby="titular">
+      <header>
+        <h1 id="titular">
+          Jetpack Compose en producción: lo que aprendimos al migrar una app real
+        </h1>
+        <p>
+          Un equipo de desarrollo móvil cuenta cómo pasó de las vistas XML a Compose sin
+          detener las entregas y qué cambiaría si empezara de nuevo.
+        </p>
+        <address>Por <a href="#autora" rel="author">Marta Cifuentes Ruiz</a></address>
+        <p>Publicado el <time datetime="2026-11-24">24 de noviembre de 2026</time></p>
+      </header>
+
+      <figure>
+        <img
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630' viewBox='0 0 1200 630'%3E%3Crect width='1200' height='630' fill='%231e3a5f'/%3E%3Crect x='200' y='120' width='800' height='390' rx='24' fill='%23ffffff'/%3E%3Crect x='250' y='170' width='300' height='290' rx='12' fill='%23d6e4f5'/%3E%3Crect x='600' y='170' width='350' height='120' rx='12' fill='%23d6e4f5'/%3E%3Crect x='600' y='340' width='350' height='120' rx='12' fill='%23d6e4f5'/%3E%3C/svg%3E"
+          alt="Ilustración esquemática de una pantalla de aplicación móvil dividida en una columna grande a la izquierda y dos bloques apilados a la derecha"
+          width="1200" height="630" />
+        <figcaption>
+          Esquema de una pantalla de la aplicación tras migrarla a componentes reutilizables.
+          Ilustración: equipo de diseño.
+        </figcaption>
+      </figure>
+
+      <section aria-labelledby="contexto">
+        <h2 id="punto-partida">Un punto de partida incómodo</h2>
+        <p>
+          La aplicación tenía más de cuatro años, cientos de pantallas definidas en XML y un
+          calendario de entregas quincenal. Reescribirla desde cero no era una opción, así que
+          el equipo decidió migrar pantalla a pantalla.
+        </p>
+        <p>
+          La primera regla fue clara: ninguna migración debía bloquear una versión. Cada cambio
+          entraba en la rama principal detrás de una revisión de código y con sus pruebas de
+          interfaz actualizadas.
+        </p>
+      </section>
+
+      <section aria-labelledby="desarrollo">
+        <h2 id="migrar">Migrar sin romper nada</h2>
+        <p>
+          El equipo empezó por las pantallas más sencillas, como ajustes y perfil, para fijar un
+          sistema de componentes común. Después abordó los listados, donde el estado compartido
+          entre vistas generaba la mayoría de los errores visuales.
+        </p>
+        <p>
+          Al mover el estado a una única fuente de verdad por pantalla, desaparecieron varios
+          fallos de sincronización que antes se corregían con parches puntuales.
+        </p>
+
+        <blockquote>
+          <p>
+            Lo más valioso no fue escribir menos código, sino poder explicar en una sola frase
+            por qué una pantalla muestra lo que muestra.
+          </p>
+          <footer>— <cite>Daniel Ortega</cite>, responsable técnico del equipo móvil</footer>
+        </blockquote>
+
+        <p>
+          Las pruebas de interfaz pasaron de depender de identificadores de vistas a describir lo
+          que el usuario ve y hace, lo que redujo el mantenimiento tras cada cambio de diseño.
+        </p>
+      </section>
+
+      <section aria-labelledby="balance">
+        <h2 id="que-cambiarian">Qué cambiarían y qué esperar ahora</h2>
+        <p>
+          Con la migración casi terminada, el equipo señala que habría medido el rendimiento
+          desde la primera pantalla y no al final. Algunas listas largas necesitaron ajustes para
+          evitar recomposiciones innecesarias.
+        </p>
+        <p>
+          El siguiente paso es compartir los componentes con otras aplicaciones de la empresa y
+          documentar los patrones que mejor han funcionado.
+        </p>
+      </section>
+
+      <footer>
+        <section aria-labelledby="autora">
+          <h2 id="autora">Sobre la autora</h2>
+          <p>
+            <strong>Marta Cifuentes Ruiz</strong> es periodista especializada en tecnología y
+            desarrollo de software. Escribe sobre herramientas, equipos y buenas prácticas para
+            quienes construyen productos digitales.
+          </p>
+          <p>
+            Contacto:
+            <a href="mailto:marta.cifuentes@ejemplo.com">marta.cifuentes@ejemplo.com</a>
+          </p>
+        </section>
+      </footer>
+    </article>
+
+    <aside aria-labelledby="relacionados">
+      <h2 id="articulos-relacionados">Artículos relacionados</h2>
+      <ul>
+        <li>
+          <a href="https://developer.android.com/jetpack/compose" target="_blank"
+            rel="noopener noreferrer">Documentación oficial de Jetpack Compose</a>
+        </li>
+        <li>
+          <a href="https://developer.android.com/develop/ui/compose/performance" target="_blank"
+            rel="noopener noreferrer">Guía de rendimiento en Compose</a>
+        </li>
+        <li>
+          <a href="https://kotlinlang.org/docs/coroutines-overview.html" target="_blank"
+            rel="noopener noreferrer">Introducción a las corrutinas de Kotlin</a>
+        </li>
+      </ul>
+    </aside>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Redacción Tecnológica. Todos los derechos reservados.</p>
+  </footer>
+</body>
+
 </html>
