@@ -9,6 +9,130 @@
     <main>
       <h1>Crear cuenta</h1>
       <!-- Construye aquí el formulario. -->
+      <p>Todos los campos son obligatorios salvo los comentarios.</p>
+
+      <form action="#" method="post">
+        <fieldset>
+          <legend>Datos de acceso</legend>
+
+          <p>
+            <label for="nombre">Nombre completo</label><br />
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              autocomplete="name"
+              required
+              minlength="3"
+              maxlength="80"
+            />
+          </p>
+
+          <p>
+            <label for="email">Correo electrónico</label><br />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              autocomplete="email"
+              required
+              maxlength="120"
+            />
+          </p>
+
+          <p>
+            <label for="password">Contraseña</label><br />
+            <input
+              type="password"
+              id="password"
+              name="password"
+              autocomplete="new-password"
+              required
+              minlength="8"
+              maxlength="64"
+              pattern="(?=.*[A-Za-z])(?=.*[0-9]).{8,64}"
+              aria-describedby="password-ayuda"
+            />
+          </p>
+          <p id="password-ayuda">
+            Entre 8 y 64 caracteres, con al menos una letra y un número.
+          </p>
+        </fieldset>
+
+        <fieldset>
+          <legend>Datos personales</legend>
+
+          <p>
+            <label for="nacimiento">Fecha de nacimiento</label><br />
+            <input
+              type="date"
+              id="nacimiento"
+              name="nacimiento"
+              autocomplete="bday"
+              required
+              min="1900-01-01"
+              max="2008-11-25"
+              aria-describedby="nacimiento-ayuda"
+            />
+          </p>
+          <p id="nacimiento-ayuda">Debes ser mayor de 18 años para crear una cuenta.</p>
+
+          <p>
+            <label for="pais">País de residencia</label><br />
+            <select id="pais" name="pais" autocomplete="country" required>
+              <option value="">Selecciona un país</option>
+              <option value="ES">España</option>
+              <option value="PT">Portugal</option>
+              <option value="FR">Francia</option>
+              <option value="IT">Italia</option>
+              <option value="DE">Alemania</option>
+            </select>
+          </p>
+        </fieldset>
+
+        <fieldset>
+          <legend>Preferencia de contacto</legend>
+
+          <p>
+            <input type="radio" id="contacto-email" name="contacto" value="email" required />
+            <label for="contacto-email">Correo electrónico</label>
+          </p>
+          <p>
+            <input type="radio" id="contacto-telefono" name="contacto" value="telefono" />
+            <label for="contacto-telefono">Teléfono</label>
+          </p>
+          <p>
+            <input type="radio" id="contacto-ninguno" name="contacto" value="ninguno" />
+            <label for="contacto-ninguno">No quiero que me contacten</label>
+          </p>
+        </fieldset>
+
+        <fieldset>
+          <legend>Comentarios y condiciones</legend>
+
+          <p>
+            <label for="comentarios">Comentarios (opcional)</label><br />
+            <textarea
+              id="comentarios"
+              name="comentarios"
+              rows="4"
+              cols="40"
+              maxlength="500"
+              aria-describedby="comentarios-ayuda"
+            ></textarea>
+          </p>
+          <p id="comentarios-ayuda">Máximo 500 caracteres.</p>
+
+          <p>
+            <input type="checkbox" id="terminos" name="terminos" value="si" required />
+            <label for="terminos">Acepto los términos y condiciones del servicio</label>
+          </p>
+        </fieldset>
+
+        <p>
+          <button type="submit">Crear cuenta</button>
+        </p>
+      </form>
     </main>
   </body>
 </html>
