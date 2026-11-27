@@ -3,9 +3,219 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Checkout</title>
+    <title>Finalizar compra — PECAS</title>
   </head>
   <body>
     <!-- Construye aquí la pantalla completa. -->
+
+    <header>
+      <p><h1>PECAS</h1></p>
+
+    <main id="contenido">
+      <section aria-labelledby="titulo-productos">
+        <h2 id="titulo-productos">Resumen de productos</h2>
+        <table>
+          <caption>
+            Productos incluidos en el pedido
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Producto</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Precio unitario</th>
+              <th scope="col">Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Frigorífico Balay</th>
+              <td>1</td>
+              <td>450,00 €</td>
+              <td>450,00 €</td>
+            </tr>
+            <tr>
+              <th scope="row">Auriculares bluetooth</th>
+              <td>1</td>
+              <td>64,50 €</td>
+              <td>64,50 €</td>
+            </tr>
+          </tbody>
+        </table>
+        <p><a href="/carrito">Modificar el carrito</a></p>
+      </section>
+
+      <form id="checkout-form" action="/pedido" method="post">
+        <fieldset>
+          <legend>Dirección de envío</legend>
+          <p>Los campos marcados como obligatorios deben completarse para continuar.</p>
+
+          <p>
+            <label for="nombre">Nombre y apellidos (obligatorio)</label><br />
+            <input type="text" id="nombre" name="nombre" autocomplete="name" required />
+          </p>
+
+          <p>
+            <label for="email">Correo electrónico (obligatorio)</label><br />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              autocomplete="email"
+              aria-describedby="email-ayuda"
+              required
+            />
+          </p>
+          <p id="email-ayuda">Te enviaremos aquí la confirmación del pedido.</p>
+
+          <p>
+            <label for="telefono">Teléfono (opcional)</label><br />
+            <input
+              type="tel"
+              id="telefono"
+              name="telefono"
+              autocomplete="tel"
+              aria-describedby="telefono-ayuda"
+            />
+          </p>
+
+          <p>
+            <label for="direccion">Calle y número (obligatorio)</label><br />
+            <input
+              type="text"
+              id="direccion"
+              name="direccion"
+              autocomplete="address-line1"
+              required
+            />
+          </p>
+
+          <p>
+            <label for="direccion-extra">Piso, puerta u otras indicaciones (opcional)</label><br />
+            <input
+              type="text"
+              id="direccion-extra"
+              name="direccionExtra"
+              autocomplete="address-line2"
+            />
+          </p>
+
+          <p>
+            <label for="codigo-postal">Código postal (obligatorio)</label><br />
+            <input
+              type="text"
+              id="codigo-postal"
+              name="codigoPostal"
+              inputmode="numeric"
+              autocomplete="postal-code"
+              pattern="[0-9]{5}"
+              maxlength="5"
+              aria-describedby="cp-ayuda"
+              required
+            />
+          </p>
+
+          <p>
+            <label for="ciudad">Ciudad (obligatorio)</label><br />
+            <input type="text" id="ciudad" name="ciudad" autocomplete="address-level2" required />
+          </p>
+
+          <p>
+            <label for="pais">País (obligatorio)</label><br />
+            <select id="pais" name="pais" autocomplete="country" required>
+              <option value="ES" selected>España</option>
+              <option value="PT">Portugal</option>
+              <option value="FR">Francia</option>
+              <option value="IT">Italia</option>
+            </select>
+          </p>
+        </fieldset>
+
+        <fieldset>
+          <legend>Método de envío</legend>
+          <p>Selecciona una opción de entrega.</p>
+          <ul>
+            <li>
+              <input
+                type="radio"
+                id="envio-estandar"
+                name="metodoEnvio"
+                value="estandar"
+                aria-describedby="envio-estandar-info"
+                checked
+                required
+              />
+              <label for="envio-estandar">Envío estándar — 4,95 €</label>
+              <p id="envio-estandar-info">Entrega en 3 a 5 días laborables.</p>
+            </li>
+            <li>
+              <input
+                type="radio"
+                id="envio-express"
+                name="metodoEnvio"
+                value="express"
+                aria-describedby="envio-express-info"
+              />
+              <label for="envio-express">Envío express — 9,90 €</label>
+              <p id="envio-express-info">
+                Entrega en 24 horas para pedidos realizados antes de las 14:00.
+              </p>
+            </li>
+            <li>
+              <input
+                type="radio"
+                id="envio-recogida"
+                name="metodoEnvio"
+                value="recogida"
+                aria-describedby="envio-recogida-info"
+              />
+              <label for="envio-recogida">Recogida en tienda — Gratis</label>
+              <p id="envio-recogida-info">
+                Disponible a partir del día siguiente en la tienda de Villamartín.
+              </p>
+            </li>
+          </ul>
+        </fieldset>
+
+        <section aria-labelledby="titulo-economico">
+          <h2 id="titulo-economico">Resumen económico</h2>
+          <dl>
+            <dt>Subtotal de productos</dt>
+            <dd>514,50 €</dd>
+            <dt>Envío estándar</dt>
+            <dd>4,95 €</dd>
+            <dt>Total (IVA incluido)</dt>
+            <dd><strong>519,45 €</strong></dd>
+          </dl>
+        </section>
+
+        <p>
+          <input type="checkbox" id="condiciones" name="condiciones" required />
+          <label for="condiciones">
+            He leído y acepto las <a href="/condiciones">condiciones de compra</a> (obligatorio)
+          </label>
+        </p>
+
+        <p><button type="submit">Realizar compra</button></p>
+      </form>
+
+      <aside aria-labelledby="titulo-ayuda">
+        <h2 id="titulo-ayuda">¿Necesitas ayuda?</h2>
+        <ul>
+          <li><a href="/ayuda/envios">Información sobre envíos y plazos</a></li>
+          <li><a href="/ayuda/devoluciones">Política de devoluciones (30 días)</a></li>
+          <li><a href="mailto:ayuda@pecas.com">ayuda@pecas.com</a></li>
+        </ul>
+      </aside>
+    </main>
+
+    <footer>
+      <p>
+        <small>
+          Tus datos se tratan conforme a nuestra
+          <a href="/privacidad">política de privacidad</a> y se usan solo para gestionar el pedido.
+        </small>
+      </p>
+      <p><small>© 2026 PECAS. Todos los derechos reservados.</small></p>
+    </footer>
   </body>
 </html>
